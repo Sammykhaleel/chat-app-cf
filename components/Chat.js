@@ -13,6 +13,18 @@ import KeyboardSpacer from "react-native-keyboard-spacer";
 export default class Chat extends Component {
   constructor() {
     super();
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: "AIzaSyCm_Yc6MZUjuW3q7PQMmsJXWkIg4Eup-_g",
+        authDomain: "test-95ec6.firebaseapp.com",
+        databaseURL: "https://test-95ec6.firebaseio.com",
+        projectId: "test-95ec6",
+        storageBucket: "test-95ec6.appspot.com",
+        messagingSenderId: "111540181902",
+        appId: "1:111540181902:web:994bd356ac27921517e2df",
+        measurementId: "G-22NLXCDQ6Z",
+      });
+    }
     this.state = { text: "" };
   }
   componentDidMount() {
@@ -60,43 +72,17 @@ export default class Chat extends Component {
 
     this.props.navigation.setOptions({ title: name });
     return (
-      <TouchableOpacity
-        accessible={true}
-        accessibilityLabel="More options"
-        accessibilityHint="Let’s you choose to send an image or your geolocation."
-        onPress={this._onPress}
-      >
-        <View style={{ flex: 1 }}>
-          <GiftedChat
-            renderBubble={this.renderBubble.bind(this)}
-            messages={this.state.messages}
-            onSend={(messages) => this.onSend(messages)}
-            user={{
-              _id: 1,
-            }}
-          />
-          {Platform.OS === "android" ? <KeyboardSpacer /> : null}
-          {/* <View style={styles.box1}></View>
-          <View style={styles.box2}></View>
-          <View style={styles.box3}></View> */}
-
-          {/* <Text>You wrote: {this.state.text}</Text>
-        <TextInput
-          style={{
-            height: 40,
-            borderColor: "gray",
-            borderWidth: 1,
+      <View style={{ flex: 1 }}>
+        <GiftedChat
+          renderBubble={this.renderBubble.bind(this)}
+          messages={this.state.messages}
+          onSend={(messages) => this.onSend(messages)}
+          user={{
+            _id: 1,
           }}
-          onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}
-          placeholder="Type here ..."
         />
-        <Button
-          title="Go to Start"
-          onPress={() => this.props.navigation.navigate("Start")}
-        /> */}
-        </View>
-      </TouchableOpacity>
+        {/* {Platform.OS === "android" ? <KeyboardSpacer /> : null} */}
+      </View>
     );
   }
 }

@@ -20,10 +20,6 @@ export default class Start extends Component {
           source={require("../assets/BackgroundImage.png")}
           style={styles.backgroundImage}
         >
-          {/* <View style={styles.box1}></View>
-          <View style={styles.box2}></View>
-          <View style={styles.box3}></View> */}
-
           <TextInput
             style={{
               height: 40,

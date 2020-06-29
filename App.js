@@ -6,6 +6,8 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+const firebase = require("firebase");
+require("firebase/firestore");
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -16,10 +18,6 @@ export default function App() {
         <Stack.Screen name="Chat" component={Chat} />
       </Stack.Navigator>
     </NavigationContainer>
-    // <Start />
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    // </View>
   );
 }
 
