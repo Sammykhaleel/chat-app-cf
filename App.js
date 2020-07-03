@@ -1,31 +1,32 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Start from "./components/Start";
-import Chat from "./components/Chat";
-import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Alert,
+  ScrollView,
+} from "react-native";
+// import react Navigation
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-const firebase = require("firebase");
-require("firebase/firestore");
-const Stack = createStackNavigator();
+// import the screens
+import Start from "./components/Start.js";
+import Chat from "./components/Chat.js";
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Start">
-        <Stack.Screen name="Start" component={Start} />
-        <Stack.Screen name="Chat" component={Chat} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+// Create the navigator
+const navigator = createStackNavigator({
+  Start: {
+    screen: Start,
+    navigationOptions: {
+      header: null,
+    },
   },
+  Chat: { screen: Chat },
 });
+
+const navigatorContainer = createAppContainer(navigator);
+// Export it as the root component
+export default navigatorContainer;
